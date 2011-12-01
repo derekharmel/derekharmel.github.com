@@ -1,0 +1,56 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3/images";
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #bbb;
+  @include background(radial-gradient(top, #fff 5%, #999));
+  font-family: Helvetica,Lucida,Arial;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}
+
+h1, h2, h3, ul {
+  margin-left: 5%;
+}
+
+h1 {
+  color: #666;
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: 10%;
+  text-shadow: -1px 1px 0px #ddd;
+  letter-spacing: -0.05em;
+  text-indent: -2px;
+}
+
+h2, h3 {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: normal;
+  text-shadow: 1px -1px 0 #aaa;
+}
+
+h3 {
+  font-size: 1.1em;
+  margin-top: 5px;
+}
+
+ul {
+  color: #666;
+  margin-top: 15px;
+  padding: 0;
+  li {
+    margin: 8px 0;
+  }
+}
+
