@@ -1,52 +1,57 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 @import "compass/reset";
 @import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/utilities/general/clearfix";
+
+
 
 html {
   height: 100%;
 }
 
 body {
-  background-color: #bbb;
-  @include background(radial-gradient(top, #fff 5%, #999));
-  font-family: Helvetica,Lucida,Arial;
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
-}
-
-h1, h2, h3, ul {
-  margin-left: 5%;
-}
-
-h1 {
+  font-family: Arimo,Helvetica,Lucida,Arial;
+  background-color: #f3f3f3;
   color: #666;
-  font-size: 3em;
-  font-weight: bold;
-  margin-top: 10%;
-  text-shadow: -1px 1px 0px #ddd;
-  letter-spacing: -0.05em;
-  text-indent: -2px;
 }
 
-h2, h3 {
-  margin-top: 10px;
-  color: #fff;
+div.container {
+  margin-left: 5%;
+  width: 700px;
+}
+
+h1, h4, h5 {
+  font-weight: bold;
+  margin-top: 30px;
+  letter-spacing: -0.05em;
+  color: #25567B;
+  text-shadow: 1px 1px 2px #888;
+}
+h1 {
+  font-size: 3em;
+  text-indent: -2px;
+  margin-top: 6%;
+}
+h2 {
+  color: #FF9200;
   font-size: 1.3em;
   font-weight: normal;
-  text-shadow: 1px -1px 0 #aaa;
+  margin-top: 10px;
+  text-shadow: -1px 1px #fff;
 }
-
-h3 {
-  font-size: 1.1em;
-  margin-top: 5px;
+h4 {
+  font-size: 1.7em;
+  margin-bottom: 10px;
+}
+h5 {
+  font-size: 1.3em;
+  color: #666;
+  letter-spacing: 0;
+  font-weight: normal;
+  margin: 5px 0px;
 }
 
 ul {
-  color: #666;
   margin-top: 15px;
   padding: 0;
   li {
@@ -54,3 +59,93 @@ ul {
   }
 }
 
+table {
+  margin-left: 2px;
+  width: 100%;
+}
+tr:nth-of-type(n+2) {
+  border-top: 1px solid #ddd;
+}
+td {
+  &:nth-of-type(n+2) {
+    padding: 5px 30px;
+  }
+  &:nth-of-type(1) {
+    padding: 5px 15px 5px 0;
+  }
+  &:nth-of-type(2) {
+    text-align: right;
+  }
+  &:nth-of-type(3) {
+    font-size: .85em;
+  }
+}
+
+.other-skills {
+  line-height: 1.3em;
+}
+
+.project {
+  clear: both;
+  margin-bottom: 20px;
+  .name {
+    float: left;
+    color: #00A6A6;
+    color: #0B61A4;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .tech-list {
+    display: inline;
+    float: right;
+    margin: 0;
+    li {
+      display: inline;
+      padding: 2px;
+      font-size: .7em;
+      color: #A65F00;
+      color: #FF9200;
+      font-weight: bold;
+      text-shadow: -1px 1px #fff;
+      @include border-radius(3px);
+      margin: 0px;
+    }
+  }
+  .description {
+    @include clearfix;
+    clear: both;
+    margin-top: 20px;
+    text-align: justify;
+    font-size: .9em;
+    line-height: 1.3em;
+  }
+}
+
+
+.job {
+  @include clearfix;
+  margin-bottom: 20px;
+  .title {
+    float: left;
+    color: #00A6A6;
+    color: #0B61A4;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .duration {
+    float: right;
+    color: #aaa;
+  }
+  .description {
+    clear: both;
+    float: left;
+    margin-top: 5px;
+    line-height: 1.3em;
+    text-align: justify;
+    font-size: .9em;
+  }
+}
+
+ul.misc {
+  margin-top: 5px;
+}

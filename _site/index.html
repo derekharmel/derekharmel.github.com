@@ -4,7 +4,9 @@
   <head>
     <title>Derek Harmel</title>
 
-    <link href="/stylesheets/screen.css" media="screen" type="text/css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/screen.css" media="screen,print" type="text/css" rel="stylesheet" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -20,22 +22,244 @@
   </head>
 
   <body>
-    <h1>Derek Harmel</h1>
-    <h2>Full stack web development</h2>
-<h3>8+ years professional experience</h3>
+    <div class="container">
+      <h1>Derek Harmel</h1>
+<h2>Full stack web developer, 8+ years professional experience</h2>
 
-<ul>
-  <li>Ruby on Rails</li>
-  <li>jQuery, CoffeeScript, JavaScript</li>
-  <li>HTML5, CSS3</li>
-  <li>Haml, Sass</li>
-  <li>Rspec, Shoulda, Capybara</li>
-  <li>Git, Github</li>
-  <li>Apache, Nginx</li>
-  <li>SQL - MySQL, Postgres, Oracle</li>
-  <li>NoSQL - MongoDB, Redis</li>
-  <li></li>
-</ul>
+<h4>Current Skills &amp; Preferred Toolset</h4>
+<table>
+  <tr>
+    <td>Ruby on Rails</td>
+    <td>5 yrs</td>
+    <td>Ruby 1.8.x &amp; 1.9.x, Rails 1.1.x &mdash; 3.1.x</td>
+  </tr>
 
+  <tr>
+    <td>JavaScript</td>
+    <td>8 yrs</td>
+    <td>CoffeeScript on recent projects</td>
+  </tr>
+
+  <tr>
+    <td>HTML</td>
+    <td>12 yrs</td>
+    <td>Haml (3 yrs), HTML5 used on recent projects</td>
+  <tr>
+    <td>CSS</td>
+    <td>8 yrs</td>
+    <td>Sass/SCSS used on several projects, CSS3, Compass</td>
+  </tr>
+
+  <tr>
+    <td>jQuery</td>
+    <td>3 yrs</td>
+    <td>Prototype.js was used previously</td>
+  </tr>
+
+  <tr>
+    <td>Testing</td>
+    <td>3 yrs</td>
+    <td>Rspec, Shoulda, Capybara</td>
+  </tr>
+
+  <tr>
+    <td>RDBMS</td>
+    <td>8 yrs</td>
+    <td>PostgreSQL, MySQL, Oracle</td>
+  </tr>
+
+  <tr>
+    <td>MongoDB</td>
+    <td>2 yrs</td>
+    <td>Used on two recent projects</td>
+  </tr>
+
+  <tr>
+    <td>Linux</td>
+    <td>3 yrs</td>
+    <td>Ubuntu, CentOS, Redhat for deployments; OS X for development</td>
+  </tr>
+
+  <tr>
+    <td>VIM</td>
+    <td>2 yrs</td>
+    <td>Left TextMate for MacVIM, never looked back</td>
+  </tr>
+
+  <tr>
+    <td>Git, Github</td>
+    <td>2 yrs</td>
+    <td>There's just no going back to Subversion</td>
+  </tr>
+</table>
+
+<h4>Other Technologies &amp; Experience</h4>
+<div class="other-skills">
+  REST, node.js, Redis, memcache, Apache, Nginx, Passenger, Capistrano, ActiveMerchant,
+  API Integration (Paypal/Payflow, SecureNet, UPS), PHP4, Perl, Bash scripting
+</div>
+
+<h4>Recent Projects</h4>
+<div class="project">
+  <span class="name">Product Catalog</span>
+  <ul class="tech-list">
+    <li>Rails 3.1</li>
+    <li>MongoDB</li>
+    <li>Mongoid</li>
+    <li>Oracle</li>
+    <li>CoffeeScript</li>
+    <li>jQuery</li>
+    <li>Raphael.js</li>
+    <li>Haml</li>
+    <li>SCSS</li>
+    <li>Rspec</li>
+    <li>Capybara</li>
+  </ul>
+  <p class="description">
+    Rewrote CustomInk's Product Management System to be more flexible and
+    usable. The legacy system had an inflexible schema and a very tedious
+    interface. MongoDB was chosen for its flexible data modeling capabilties
+    and its speed. Numerous UX improvements were made over the old system
+    resulting in a more intuitive and faster UI which enabled the Products Team
+    to significantly reduce the amount of time needed to add new products. One
+    of the more challenging aspects of this project was the requirement to
+    maintain parity with the data in the legacy schema.
+  </p>
+</div>
+
+<div class="project">
+  <span class="name">T-Shirt Printer Rolodex</span>
+  <ul class="tech-list">
+    <li>Rails 3.1</li>
+    <li>MongoDB</li>
+    <li>Mongoid</li>
+    <li>jQuery</li>
+    <li>CoffeeScript</li>
+    <li>Haml</li>
+    <li>SCSS</li>
+    <li>Shoulda</li>
+    <li>Capybara</li>
+  </ul>
+  <p class="description">
+    Previously, employees tasked with finding a viable printer to fulfill a
+    customer's order had to manually search through an 80 page Excel workbook.
+    This data was structured and given a CRUD interface including another UI to replace
+    the workbook. These employees are now able to search for printers via
+    certain attributes rather than visually scanning spreadsheets resulting
+    in gains in efficiency and corrrectness. Work is currently underway using
+    this resource to automate printer selection. Again, MongoDB was chosen for
+    its flexible data modeling.
+  </p>
+</div>
+
+<div class="project">
+  <span class="name">Payment Routing Service</span>
+  <ul class="tech-list">
+    <li>Rails 2.3</li>
+    <li>ActiveMerchant</li>
+    <li>Oracle</li>
+    <li>Haml</li>
+    <li>Rspec</li>
+  </ul>
+  <p class="description">
+    This service was created to DRY up redundant code for financial transactions
+    into a single system and abstract away vendor specific payment processing
+    idiosyncracies. My responsibilities involved integrating SecureNet
+    by developing a new gateway for use in ActiveMerchant and
+    adding ACH capabilities for Payflow. The system was also capable of
+    throttling transactions to multiple gateways by setting percentage
+    thresholds per gateway.
+  </p>
+</div>
+
+<div class="project">
+  <span class="name">Order Fulfillment System</span>
+  <ul class="tech-list">
+    <li>Rails 2.3</li>
+    <li>Oracle</li>
+    <li>jQuery</li>
+    <li>Haml</li>
+    <li>Sass</li>
+    <li>Oracle</li>
+    <li>Shoulda</li>
+  </ul>
+  <p class="description">
+    My contributions to this project were numerous. I rewrote the system used
+    for ordering blank products from CustomInk's numerous suppliers which
+    resulted in fewer errors and increased productivity. This large project that
+    makes heavy use of AJAX often had significant performance problems.
+    Through profiling and utilization of techniques like multi-threading I/O operations,
+    SQL optimization, and pre-emptively caching expensive requests,
+    I've been able to save several man hours per day.
+  </p>
+</div>
+
+<div class="project">
+  <span class="name"></span>
+  <ul class="tech-list">
+  </ul>
+</div>
+
+<h4>Work Experience</h4>
+
+<h5>CustomInk.com</h5>
+<div class="job">
+  <span class="title">Software Engineer</span>
+  <span class="duration">Oct 2008 &mdash; Present</span>
+  <p class="description">
+    As a member of the Operations Technology software development team, I built
+    and maintained software in support of the company's ability to fulfill
+    orders. We were expected to be very autonomous, managing and
+    developing products from start to finish using agile development
+    principles.
+  </p>
+</div>
+
+<h5>Freelance</h5>
+<div class="job">
+  <span class="title">Software Developer</span>
+  <span class="duration">Oct 2008 &mdash; Present</span>
+  <p class="description">
+  Development, support, and maintenance of various PHP and Ruby on Rails
+  applications.
+  </p>
+</div>
+
+<h5>KCI Technologies</h5>
+<div class="job">
+  <span class="title">Software Developer / SysAdmin</span>
+  <span class="duration">Nov 2005 &mdash; Oct 2008</span>
+  <p class="description">
+    Built and maintained various PHP and Ruby on Rails applications. I
+    introduced KCI to Ruby on Rails and iterative development.
+    This was my first time using Ruby on Rails professionally. Other
+    responsibilities included system administration for web servers,
+    Apache, Bind/DNS, email servers, and client project websites.
+  </p>
+</div>
+
+<h5>FocalBase Internet Solutions</h5>
+<div class="job">
+  <span class="title">Software Developer</span>
+  <span class="duration">Aug 2004 &mdash; Nov 2005</span>
+  <p class="description">
+    Built web applications with PHP for clients and maintained apps developed
+    before I was hired. Often had direct contact with clients for demos and
+    requirements clarification.
+  </p>
+</div>
+
+<h5>Black &amp; Decker</h5>
+<div class="job">
+  <span class="title">Information Systems Intern</span>
+  <span class="duration">Multiple internships</span>
+  <p class="description">
+    Wrote various web applications in Perl. Assisted with some sysadmin tasks
+    using KornShell on AIX machines. This was my first experience with *nix and
+    web applications, despite having been playing with HTML for several years.
+  </p>
+</div>
+
+    </div>
   </body>
 </html>
