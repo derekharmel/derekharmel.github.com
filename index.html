@@ -2,10 +2,13 @@
 layout: default
 title: Derek Harmel's Resume
 ---
+<div id="me">
+  <img src="/images/me_small.jpg"/>
+</div>
+
 <h1>Derek Harmel</h1>
 <h2>Full stack web developer, 8+ years professional experience</h2>
-
-<h4>Current Skills &amp; Preferred Toolset</h4>
+<h4>Current Skills &amp; Toolchain</h4>
 <table>
   <tr>
     <td>Ruby on Rails</td>
@@ -74,13 +77,23 @@ title: Derek Harmel's Resume
 
 <h4>Other Technologies &amp; Experience</h4>
 <div class="other-skills">
-  REST, node.js, Redis, memcache, Solr, Heroku, Apache, Nginx, Passenger, Capistrano, ActiveMerchant,
-  API Integration, PHP4, Perl, Bash scripting
+  REST, node.js, Redis, memcache, Solr, Heroku, Apache, Nginx, Passenger, Bash,
+  Capistrano, ActiveMerchant, API Integration
 </div>
 
 <h4>Recent Projects</h4>
 <div class="project">
   <span class="name">Product Catalog</span>
+  <p class="description">
+    Rewrote CustomInk's Product Management System to be more flexible and
+    usable. The legacy system had an inflexible schema and a very tedious
+    interface. MongoDB was chosen for its flexible data modeling capabilities
+    and its speed. Numerous UX improvements were made over the old system
+    resulting in a more intuitive and faster UI which enabled the Products Team
+    to significantly reduce the amount of time needed to add new products. One
+    of the more challenging aspects of this project was the requirement to
+    maintain parity with the data in the legacy schema.
+  </p>
   <ul class="tech-list">
     <li>Rails 3.1</li>
     <li>MongoDB</li>
@@ -94,20 +107,20 @@ title: Derek Harmel's Resume
     <li>Rspec</li>
     <li>Capybara</li>
   </ul>
-  <p class="description">
-    Rewrote CustomInk's Product Management System to be more flexible and
-    usable. The legacy system had an inflexible schema and a very tedious
-    interface. MongoDB was chosen for its flexible data modeling capabilities
-    and its speed. Numerous UX improvements were made over the old system
-    resulting in a more intuitive and faster UI which enabled the Products Team
-    to significantly reduce the amount of time needed to add new products. One
-    of the more challenging aspects of this project was the requirement to
-    maintain parity with the data in the legacy schema.
-  </p>
 </div>
 
 <div class="project">
   <span class="name">T-Shirt Printer Rolodex</span>
+  <p class="description">
+    Previously, employees tasked with finding a viable printer to fulfill a
+    customer's order had to manually search through an 80 page Excel workbook.
+    This data was structured and given a CRUD interface including another UI to replace
+    the workbook. These employees are now able to search for printers via
+    certain attributes rather than visually scanning spreadsheets resulting
+    in gains in efficiency and correctness. Work is currently underway using
+    this resource to automate printer selection. Again, MongoDB was chosen for
+    its flexible data modeling.
+  </p>
   <ul class="tech-list">
     <li>Rails 3.1</li>
     <li>MongoDB</li>
@@ -119,27 +132,10 @@ title: Derek Harmel's Resume
     <li>Shoulda</li>
     <li>Capybara</li>
   </ul>
-  <p class="description">
-    Previously, employees tasked with finding a viable printer to fulfill a
-    customer's order had to manually search through an 80 page Excel workbook.
-    This data was structured and given a CRUD interface including another UI to replace
-    the workbook. These employees are now able to search for printers via
-    certain attributes rather than visually scanning spreadsheets resulting
-    in gains in efficiency and correctness. Work is currently underway using
-    this resource to automate printer selection. Again, MongoDB was chosen for
-    its flexible data modeling.
-  </p>
 </div>
 
 <div class="project">
   <span class="name">Payment Routing Service</span>
-  <ul class="tech-list">
-    <li>Rails 2.3</li>
-    <li>ActiveMerchant</li>
-    <li>Oracle</li>
-    <li>Haml</li>
-    <li>Rspec</li>
-  </ul>
   <p class="description">
     This service was created to DRY up redundant code for financial transactions
     into a single system and abstract away vendor specific payment processing
@@ -149,19 +145,17 @@ title: Derek Harmel's Resume
     throttling transactions to multiple gateways by setting percentage
     thresholds per gateway.
   </p>
+  <ul class="tech-list">
+    <li>Rails 2.3</li>
+    <li>ActiveMerchant</li>
+    <li>Oracle</li>
+    <li>Haml</li>
+    <li>Rspec</li>
+  </ul>
 </div>
 
 <div class="project">
   <span class="name">Order Fulfillment System</span>
-  <ul class="tech-list">
-    <li>Rails 2.3</li>
-    <li>Oracle</li>
-    <li>jQuery</li>
-    <li>Haml</li>
-    <li>Sass</li>
-    <li>Oracle</li>
-    <li>Shoulda</li>
-  </ul>
   <p class="description">
     My contributions to this project were numerous. I rewrote the system used
     for ordering blank products from CustomInk's numerous suppliers which
@@ -171,22 +165,27 @@ title: Derek Harmel's Resume
     SQL optimization, and preemptively caching expensive requests,
     I've been able to save several man hours per day.
   </p>
-</div>
-
-<div class="project">
-  <span class="name"></span>
   <ul class="tech-list">
+    <li>Rails 2.3</li>
+    <li>Oracle</li>
+    <li>jQuery</li>
+    <li>Haml</li>
+    <li>Sass</li>
+    <li>Oracle</li>
+    <li>Shoulda</li>
   </ul>
 </div>
 
+<div style="clear: both;"></div>
+
 <h4>Work Experience</h4>
 
-<h5>Independent Consultant</h5>
+<h5>Double Pedal LLC</h5>
 <div class="job">
-  <span class="title">Software Developer</span>
+  <span class="title">Independent Software Developer & Consultant</span>
   <span class="duration">Oct 2008 &mdash; Present</span>
   <p class="description">
-    Development, support, and maintenance of various PHP and Ruby on Rails
+    Development, support, and maintenance of various Ruby on Rails
     applications.
   </p>
 </div>

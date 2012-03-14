@@ -4,27 +4,36 @@
 @import "compass/utilities/general/clearfix";
 
 
-
 html {
   height: 100%;
 }
 
 body {
-  font-family: Arimo,Helvetica,Lucida,Arial;
-  background-color: #f3f3f3;
+  font-family: Sorts Mill Goudy;
+  background-color: #f8f8f8;
   color: #666;
 }
 
 div.container {
   margin-left: 5%;
+  margin-bottom: 50px;
   width: 700px;
 }
 
+#me {
+  display: inline;
+  float: right;
+  img {
+    @include border-radius(5px);
+    width: 125px;
+    box-shadow: 2px 2px 5px #ccc;
+  }
+}
+
 h1, h4, h5 {
-  font-weight: bold;
   margin-top: 30px;
   letter-spacing: -0.05em;
-  color: #25567B;
+  color: #444;
   text-shadow: 1px 1px 2px #888;
 }
 h1 {
@@ -33,7 +42,7 @@ h1 {
   margin-top: 6%;
 }
 h2 {
-  color: #FF9200;
+  color: #888;
   font-size: 1.3em;
   font-weight: normal;
   margin-top: 10px;
@@ -67,6 +76,8 @@ tr:nth-of-type(n+2) {
   border-top: 1px solid #ddd;
 }
 td {
+  padding-top: 8px !important;
+
   &:nth-of-type(n+2) {
     padding: 5px 30px;
   }
@@ -87,37 +98,36 @@ td {
 
 .project {
   clear: both;
+  float: left;
   margin-bottom: 20px;
   .name {
     float: left;
-    color: #00A6A6;
-    color: #0B61A4;
-    font-weight: bold;
+    color: #888;
     margin-bottom: 5px;
+    font-style: italic;
   }
   .tech-list {
-    display: inline;
     float: right;
+    width: 28%;
     margin: 0;
     li {
+      float: right;
       display: inline;
-      padding: 2px;
-      font-size: .7em;
-      color: #A65F00;
-      color: #FF9200;
-      font-weight: bold;
+      padding: 4px;
+      font-size: .9em;
+      color: #aaa;
       text-shadow: -1px 1px #fff;
       @include border-radius(3px);
       margin: 0px;
     }
   }
   .description {
-    @include clearfix;
     clear: both;
-    margin-top: 20px;
+    float: left;
+    width: 70%;
     text-align: justify;
     font-size: .9em;
-    line-height: 1.3em;
+    line-height: 1.4em;
   }
 }
 
@@ -127,10 +137,9 @@ td {
   margin-bottom: 20px;
   .title {
     float: left;
-    color: #00A6A6;
-    color: #0B61A4;
+    color: #888;
     display: inline-block;
-    font-weight: bold;
+    font-style: italic;
   }
   .duration {
     float: right;
