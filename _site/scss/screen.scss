@@ -12,6 +12,11 @@ body {
   font-family: Sorts Mill Goudy;
   background-color: #f8f8f8;
   color: #666;
+  word-spacing: 0.1em;
+}
+
+a {
+  color: #666;
 }
 
 div.container {
@@ -23,10 +28,41 @@ div.container {
 #me {
   display: inline;
   float: right;
+  margin-left: 25px;
   img {
     @include border-radius(5px);
     width: 125px;
     box-shadow: 2px 2px 5px #ccc;
+  }
+}
+
+#links {
+  margin-top: 5px;
+  font-size: .9em;
+
+  li {
+    text-align: right;
+    margin: 5px 5px;
+  }
+  a {
+    color: #78c;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#intro {
+  margin-top: 15px;
+  line-height: 1.2em;
+  text-align: justify;
+
+  li {
+    margin: 0;
+    &:before {
+      content: "\b7  ";
+    }
   }
 }
 
