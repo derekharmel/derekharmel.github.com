@@ -23,6 +23,16 @@
     <!-- <link rel="stylesheet" href="lib/css/tomorrow-night.css">-->
     <link rel="stylesheet" href="lib/css/sunburst.css">
     <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27438416-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
 
   <body>
@@ -111,160 +121,154 @@ db.&lt;collection name&gt;.aggregate(
         </section>
 
         <section>
-          <section>
-            <h1>The Pipeline</h1>
-            <p class="fragment">Think Unix pipes<p>
-            <p class="fragment"><small><code>cat logfile | grep FATAL | cut -f2-4 | sort -k -n</code></small></p>
-          </section>
-
-          <section>
-            <h2>$match</h2>
-            <p>Usual MongoDB <code>find</code> syntax</p>
-            <p>*nix's <code>grep</code></p>
-            <p>SQL's <code>WHERE</code></p>
-            <p>Use early in the pipeline if possible</p>
-            <aside class="notes">
-              <p>Using $match early limits the # of documents to process and uses indexes</p>
-              <p>Can't use $where queries due to lack of interpreter</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>$project</h2>
-            <p>*nix's <code>awk</code></p>
-            <p>SQL's <code>SELECT</code></p>
-            <p>Reshape the document</p>
-            <p>Perform computations</p>
-            <aside class="notes">
-              <p>Similar to find's field selection</p>
-              <p>Reshaping: include fields, exclude fields, compute fields</p>
-              <p>All kinds of computations: add, substract, divide, mod, multiply</p>
-              <p>Create new fields, including subdocuments</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>$unwind</h2>
-            <p>SQL's <code>JOIN</code> (kinda)</p>
-            <p>Creates N documents for an array of length N</p>
-            <p>Used often with <code>$group</code> operator</p>
-            <aside class="notes">
-              <p>$unwind + $group = pivot</p>
-              <p>Hands out array elements one at a time</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>$group</h2>
-            <p>SQL's <code>GROUP BY</code></p>
-            <p>Groups documents by matching field(s)</p>
-            <p>Performs computations and array operations</p>
-            <aside class="notes">
-              <p>Computations: $sum, $avg</p>
-              <p>Array ops: $first, $last, $max, $min, $push, $addToSet</p>
-              <p>Specify a new _id key that defines how to group documents</p>
-              <p>$group is done in memory, leads to memory concerns</p>
-              <p>$group on sharded collections requires data be sent back to</p>
-              mongos process</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>$sort</h2>
-            <p>*nix's <code>sort</code></p>
-            <p>SQL's <code>ORDER BY</code></p>
-            <p>Use early in the pipeline if possible</p>
-            <aside class="notes">
-              <p>Using $sort early increases likelyhood of using an index</p>
-              <p>$sort is done in memory, leads to memory concerns</p>
-              <p>$sort on sharded collections requires data be sent back to</p>
-              mongos process</p>
-            </aside>
-          </section>
-
-          <section>
-            <h2>$limit and $skip</h2>
-            <p>*nix's <code>head</code></p>
-            <p>SQL's <code>LIMIT</code> &amp; <code>OFFSET</code></p>
-            <aside class="notes">
-            </aside>
-          </section>
-
-          <section>
-            <h2>$out (future)</h2>
-            <p>Outputs data to a collection</p>
-            <p>Located anywhere within a pipeline</p>
-            <p><a href="https://jira.mongodb.org/browse/SERVER-3253">jira.mongodb.org/browse/SERVER-3253</a></p>
-            <aside class="notes">
-            </aside>
-          </section>
-
-          <section>
-            <h2>$???</h2>
-            <p>New operations easy to add</p>
-            <p>Request at <a href="https://jira.mongodb.org/">jira.mongodb.org</a></p>
-          </section>
+          <h1>The Pipeline</h1>
+          <p class="fragment">Think Unix pipes<p>
+          <p class="fragment"><small><code>cat logfile | grep FATAL | cut -f2-4 | sort -k -n</code></small></p>
         </section>
 
         <section>
-          <section>
-            <h1>Computed Expressions</h1>
-          </section>
+          <h2>$match</h2>
+          <p>Usual MongoDB <code>find</code> syntax</p>
+          <p>*nix's <code>grep</code></p>
+          <p>SQL's <code>WHERE</code></p>
+          <p>Use early in the pipeline if possible</p>
+          <aside class="notes">
+            <p>Using $match early limits the # of documents to process and uses indexes</p>
+            <p>Can't use $where queries due to lack of interpreter</p>
+          </aside>
+        </section>
 
-          <section>
-            <h2>Comparison Operators</h2>
-            <p><code>$cmp $eq $gt $gte $lt $lte $ne</code></p>
-            <p>Accept an array of two values, most return a boolean</p>
-            <p>
-            <pre><code>
+        <section>
+          <h2>$project</h2>
+          <p>*nix's <code>awk</code></p>
+          <p>SQL's <code>SELECT</code></p>
+          <p>Reshape the document</p>
+          <p>Perform computations</p>
+          <aside class="notes">
+            <p>Similar to find's field selection</p>
+            <p>Reshaping: include fields, exclude fields, compute fields</p>
+            <p>All kinds of computations: add, substract, divide, mod, multiply</p>
+            <p>Create new fields, including subdocuments</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$unwind</h2>
+          <p>SQL's <code>JOIN</code> (kinda)</p>
+          <p>Creates N documents for an array of length N</p>
+          <p>Used often with <code>$group</code> operator</p>
+          <aside class="notes">
+            <p>$unwind + $group = pivot</p>
+            <p>Hands out array elements one at a time</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$group</h2>
+          <p>SQL's <code>GROUP BY</code></p>
+          <p>Groups documents by matching field(s)</p>
+          <p>Performs computations and array operations</p>
+          <aside class="notes">
+            <p>Computations: $sum, $avg</p>
+            <p>Array ops: $first, $last, $max, $min, $push, $addToSet</p>
+            <p>Specify a new _id key that defines how to group documents</p>
+            <p>$group is done in memory, leads to memory concerns</p>
+            <p>$group on sharded collections requires data be sent back to</p>
+            mongos process</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$sort</h2>
+          <p>*nix's <code>sort</code></p>
+          <p>SQL's <code>ORDER BY</code></p>
+          <p>Use early in the pipeline if possible</p>
+          <aside class="notes">
+            <p>Using $sort early increases likelyhood of using an index</p>
+            <p>$sort is done in memory, leads to memory concerns</p>
+            <p>$sort on sharded collections requires data be sent back to</p>
+            mongos process</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$limit and $skip</h2>
+          <p>*nix's <code>head</code></p>
+          <p>SQL's <code>LIMIT</code> &amp; <code>OFFSET</code></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>$out (future)</h2>
+          <p>Outputs data to a collection</p>
+          <p>Located anywhere within a pipeline</p>
+          <p><a href="https://jira.mongodb.org/browse/SERVER-3253">jira.mongodb.org/browse/SERVER-3253</a></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>$???</h2>
+          <p>New operations easy to add</p>
+          <p>Request at <a href="https://jira.mongodb.org/">jira.mongodb.org</a></p>
+        </section>
+
+        <section>
+          <h1>Computed Expressions</h1>
+        </section>
+
+        <section>
+          <h2>Comparison Operators</h2>
+          <p><code>$cmp $eq $gt $gte $lt $lte $ne</code></p>
+          <p>Accept an array of two values, most return a boolean</p>
+          <p>
+          <pre><code>
 $gt: ['$IQ', '$bowlingScore'] // => true
 
 // only because I'm a terrible bowler
-            </code></pre>
-            </p>
-          </section>
+          </code></pre>
+          </p>
+        </section>
 
-          <section>
-            <h2>Arithmetic Operators</h2>
-            <p><code>$add $divide $mod $multiply $substract</code></p>
-            <p>Most accept an array of two values, return a value</p>
-            <p><code>$add</code> &amp; <code>$multiply</code> accept N values</p>
-            <p>
-            <pre><code>
+        <section>
+          <h2>Arithmetic Operators</h2>
+          <p><code>$add $divide $mod $multiply $substract</code></p>
+          <p>Most accept an array of two values, return a value</p>
+          <p><code>$add</code> &amp; <code>$multiply</code> accept N values</p>
+          <p>
+          <pre><code>
 $add: ['$hoursOfXbox', '$hoursOfTv', '$hoursOfReddit'] // => 24
 
 // completely fictional, I swear
-            </code></pre>
-            </p>
-            <aside class="notes">
-              <p>$add and $multiply take an array of any length</p>
-              <p>$divide, $mod, $and subtract take an array as a pair</p>
-            </aside>
-          </section>
+          </code></pre>
+          </p>
+          <aside class="notes">
+            <p>$add and $multiply take an array of any length</p>
+            <p>$divide, $mod, $and subtract take an array as a pair</p>
+          </aside>
+        </section>
 
-          <section>
-            <h2>String Operators</h2>
-            <p><code>$strcasecmp $substr $toLower $toUpper $add</code></p>
-          </section>
+        <section>
+          <h2>String Operators</h2>
+          <p><code>$strcasecmp $substr $toLower $toUpper $add</code></p>
+        </section>
 
-          <section>
-            <h2>Date Operators</h2>
-            <p><code>$dayOfMonth $dayOfWeek $dayofYear $hour $minute $month
-              $second $week $year</code></p>
-            <p>Extract values from a <code>Date</code> object</p>
-          </section>
+        <section>
+          <h2>Date Operators</h2>
+          <p><code>$dayOfMonth $dayOfWeek $dayofYear $hour $minute $month
+            $second $week $year</code></p>
+          <p>Extract values from a <code>Date</code> object</p>
+        </section>
 
-          <section>
-            <h2>Multi-Expressions</h2>
-            <p><code>$cond </code> similar to a ternary operator</code></p>
-            <p><code>$ifNull </code> similar to<code> NVL, IFNULL, COALESCE</code></p>
-          </section>
-          </ul>
+        <section>
+          <h2>Multi-Expressions</h2>
+          <p><code>$cond </code> similar to a ternary operator</code></p>
+          <p><code>$ifNull </code> similar to<code> NVL, IFNULL, COALESCE</code></p>
         </section>
 
 
 
-        <section>
           <section>
             <h1>Examples</h1>
           </section>
@@ -382,20 +386,7 @@ db.presentations.aggregate(
 <span></code></pre>
 </section>
 
-<!-- db.presentations.aggregate(-->
-<!-- <span class="fragment">  { $unwind: '$topics' },</span>-->
-<!-- <span class="fragment">  { $group: {</span>-->
-<!-- <span class="fragment">      _id: {topics: 1, date: 1},</span>-->
-<!-- <span class="fragment">      total: {$sum: '$attendees'}</span>-->
-<!-- <span class="fragment">    }-->
-<!--   }</span>-->
-<!-- ).result // =>-->
 
-<!-- [{_id: {date: 20120815, topics: "devops"},         total: 40},-->
-<!--  {_id: {date: 20120815, topics: "kitten mittens"}, total: 23},-->
-<!--  {_id: {date: 20120815, topics: "badassery"},      total: 32},-->
-<!--  {_id: {date: 20120815, topics: "mongodb"},        total: 55}]-->
-        </section>
 
         <section>
           <h2>Resources</h2>
