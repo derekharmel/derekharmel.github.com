@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>MongoDB Aggregation Framework - Derek Harmel</title>
+
+    <meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css">-->
+    <!-- <link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">-->
+    <!-- <link rel="stylesheet" href="lib/css/tomorrow-night.css">-->
+    <link rel="stylesheet" href="lib/css/sunburst.css">
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27438416-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Used to fade in a background when a specific slide state is reached -->
+      <div class="state-background"></div>
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>MongoDB</h2>
+          <h2>Aggregation Framework</h2>
+          <h4 style="margin-top: 5em">Derek Harmel</h4>
+          <h4><a href="http://twitter.com/derekharmel">@derekharmel</a></h4>
+        </section>
+
+        <section>
+          <h2>What's it for?</h2>
+          <p>Aggregation, computation, and data-reshaping</p>
+          <aside class="notes">
+            <p>Most common example is SQL's GROUP BY clause</p>
+            <p>Useful for reporting and analytics</p>
+            <p>Ever wanted to return just matching sub-documents?</p>
+            <p>Current query capabilities are limited</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Why not Map-reduce?</h2>
+          <ul>
+            <li>Simpler</li>
+            <li>Faster</li>
+            <li>Better document access</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Declarative syntax vs imperative code</li>
+              <li>Prefix-based stateless expression language using JSON</li>
+              <li>C++ execution vs Spidermonkey interpreter</li>
+              <li>Spidermonkey has performance costs (e.g. one instance per process)</li>
+              <li>Map-reduce limited when accessing complex documents</li>
+              <li>Easier to debug</li>
+              <li>Not a replacement for Map-reduce</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>How does it work?</h2>
+          <ol>
+            <li>Specify a collection to pass through pipeline</li>
+            <li>Declare a pipeline of operations</li>
+            <li>Collection passes through pipeline</li>
+            <li>Results returned as a document</li>
+          </ol>
+          <aside class="notes">
+            <p>The last point is important as you are limited to the 16MB
+            document size restriction</p>
+            <p>The document returned may look nothing like the collection</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>The Command</h1>
+          <p>
+            <pre><code class="no-highlight">
+db.runCommand({
+  aggregate: '&lt;collection name&gt;',
+  pipeline: [
+    { $&lt;operation&gt;: ...},
+    { $&lt;operation&gt;: ...},
+    { $&lt;operation&gt;: ...}
+]})
+
+db.&lt;collection name&gt;.aggregate(
+  { $&lt;operation&gt;: ...},
+  { $&lt;operation&gt;: ...},
+  { $&lt;operation&gt;: ...}
+)
+            </code></pre>
+          </p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h1>The Pipeline</h1>
+          <p class="fragment">Think Unix pipes<p>
+          <p class="fragment"><small><code>cat logfile | grep FATAL | cut -f2-4 | sort -k -n</code></small></p>
+        </section>
+
+        <section>
+          <h2>$match</h2>
+          <p>Usual MongoDB <code>find</code> syntax</p>
+          <p>*nix's <code>grep</code></p>
+          <p>SQL's <code>WHERE</code></p>
+          <p>Use early in the pipeline if possible</p>
+          <aside class="notes">
+            <p>Using $match early limits the # of documents to process and uses indexes</p>
+            <p>Can't use $where queries due to lack of interpreter</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$project</h2>
+          <p>*nix's <code>awk</code></p>
+          <p>SQL's <code>SELECT</code></p>
+          <p>Reshape the document</p>
+          <p>Perform computations</p>
+          <aside class="notes">
+            <p>Similar to find's field selection</p>
+            <p>Reshaping: include fields, exclude fields, compute fields</p>
+            <p>All kinds of computations: add, substract, divide, mod, multiply</p>
+            <p>Create new fields, including subdocuments</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$unwind</h2>
+          <p>SQL's <code>JOIN</code> (kinda)</p>
+          <p>Creates N documents for an array of length N</p>
+          <p>Used often with <code>$group</code> operator</p>
+          <aside class="notes">
+            <p>$unwind + $group = pivot</p>
+            <p>Hands out array elements one at a time</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$group</h2>
+          <p>SQL's <code>GROUP BY</code></p>
+          <p>Groups documents by matching field(s)</p>
+          <p>Performs computations and array operations</p>
+          <aside class="notes">
+            <p>Computations: $sum, $avg</p>
+            <p>Array ops: $first, $last, $max, $min, $push, $addToSet</p>
+            <p>Specify a new _id key that defines how to group documents</p>
+            <p>$group is done in memory, leads to memory concerns</p>
+            <p>$group on sharded collections requires data be sent back to</p>
+            mongos process</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$sort</h2>
+          <p>*nix's <code>sort</code></p>
+          <p>SQL's <code>ORDER BY</code></p>
+          <p>Use early in the pipeline if possible</p>
+          <aside class="notes">
+            <p>Using $sort early increases likelyhood of using an index</p>
+            <p>$sort is done in memory, leads to memory concerns</p>
+            <p>$sort on sharded collections requires data be sent back to</p>
+            mongos process</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>$limit and $skip</h2>
+          <p>*nix's <code>head</code></p>
+          <p>SQL's <code>LIMIT</code> &amp; <code>OFFSET</code></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>$out (future)</h2>
+          <p>Outputs data to a collection</p>
+          <p>Located anywhere within a pipeline</p>
+          <p><a href="https://jira.mongodb.org/browse/SERVER-3253">jira.mongodb.org/browse/SERVER-3253</a></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>$???</h2>
+          <p>New operations easy to add</p>
+          <p>Request at <a href="https://jira.mongodb.org/">jira.mongodb.org</a></p>
+        </section>
+
+        <section>
+          <h1>Computed Expressions</h1>
+        </section>
+
+        <section>
+          <h2>Comparison Operators</h2>
+          <p><code>$cmp $eq $gt $gte $lt $lte $ne</code></p>
+          <p>Accept an array of two values, most return a boolean</p>
+          <p>
+          <pre><code>
+$gt: ['$IQ', '$bowlingScore'] // => true
+
+// only because I'm a terrible bowler
+          </code></pre>
+          </p>
+        </section>
+
+        <section>
+          <h2>Arithmetic Operators</h2>
+          <p><code>$add $divide $mod $multiply $substract</code></p>
+          <p>Most accept an array of two values, return a value</p>
+          <p><code>$add</code> &amp; <code>$multiply</code> accept N values</p>
+          <p>
+          <pre><code>
+$add: ['$hoursOfXbox', '$hoursOfTv', '$hoursOfReddit'] // => 24
+
+// completely fictional, I swear
+          </code></pre>
+          </p>
+          <aside class="notes">
+            <p>$add and $multiply take an array of any length</p>
+            <p>$divide, $mod, $and subtract take an array as a pair</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>String Operators</h2>
+          <p><code>$strcasecmp $substr $toLower $toUpper $add</code></p>
+        </section>
+
+        <section>
+          <h2>Date Operators</h2>
+          <p><code>$dayOfMonth $dayOfWeek $dayofYear $hour $minute $month
+            $second $week $year</code></p>
+          <p>Extract values from a <code>Date</code> object</p>
+        </section>
+
+        <section>
+          <h2>Multi-Expressions</h2>
+          <p><code>$cond </code> similar to a ternary operator</code></p>
+          <p><code>$ifNull </code> similar to<code> NVL, IFNULL, COALESCE</code></p>
+        </section>
+
+
+
+          <section>
+            <h1>Examples</h1>
+          </section>
+<div id='presentations-collection' style="display: none">
+<pre><code class="js">// presentations collection
+{_id: 1, presenter: 'Derek Harmel', rating: 4, attendees: 32,
+ date: new Date(2012,7,15), topics: ['mongodb','badassery']}
+
+{_id: 2, presenter: 'Ryan McGeary', rating: 4.5, attendees: 23,
+ date: new Date(2012,7,15), topics: ['mongodb','kitten mittens']}
+
+{_id: 3, presenter: 'Nathen Harvey', rating: 5, attendees: 40,
+ date: new Date(2012,7,15), topics: ['devops']}</code></pre>
+</div>
+
+<section>
+<script type="text/javascript">document.write($('#presentations-collection').html());</script>
+<pre><code class="js">// good presenters
+db.presentations.aggregate(
+<span class="fragment">  { $match: {rating: {$gt: 4}} },</span>
+<span class="fragment">  { $project: {presenter: 1} }</span>
+).result // =>
+<span class="fragment">
+[{_id: 2, presenter: 'Ryan McGeary'},
+ {_id: 3, presenter: 'Nathen Harvey'}]
+</span></code></pre>
+</section>
+
+
+
+<section>
+<script type="text/javascript">document.write($('#presentations-collection').html());</script>
+<pre><code class="js">// presenters sorted by presenter score
+db.presentations.aggregate(
+<span class="fragment">  { $project: {</span>
+<span class="fragment">      presenter: 1,</span>
+<span class="fragment">      score: { $multiply: ['$attendees', '$rating'] }</span>
+<span class="fragment">  } },</span>
+<span class="fragment">  { $sort: {score: -1} }</span>
+).result // =>
+<span class="fragment">
+[{_id: 3, presenter: "Nathen Harvey", score: 200},
+ {_id: 1, presenter: "Derek Harmel",  score: 128},
+ {_id: 2, presenter: "Ryan McGeary",  score: 115}]
+</span></code></pre>
+</section>
+
+
+
+<section>
+<script type="text/javascript">document.write($('#presentations-collection').html());</script>
+<pre><code class="js">// attendee stats by day for great talks
+db.presentations.aggregate(
+<span class="fragment">  { $match: {rating: {$gte: 4.5}} },</span>
+<span class="fragment">  { $group: {</span>
+<span class="fragment">      _id: '$date',</span>
+<span class="fragment">      total: {$sum: '$attendees'},</span>
+<span class="fragment">      avg:   {$avg: '$attendees'}</span>
+<span class="fragment">  } }</span>
+).result // =>
+<span class="fragment">
+[{_id: ISODate("2012-08-15T04:00:00Z"), total: 63, avg: 31.5}]
+</span></code></pre>
+</section>
+
+
+
+<section>
+<script type="text/javascript">document.write($('#presentations-collection').html());</script>
+<pre><code class="js">// number of talks by topic
+db.presentations.aggregate(
+<span class="fragment">  { $unwind: '$topics' },</span>
+<span class="fragment">  { $group: {</span>
+<span class="fragment">      _id: '$topics',</span>
+<span class="fragment">      total: {$sum: 1},</span>
+<span class="fragment">  } }</span>
+).result // =>
+<span class="fragment">
+[{_id: "kitten mittens", total: 1},
+ {_id: "badassery",      total: 1},
+ {_id: "devops",         total: 1},
+ {_id: "mongodb",        total: 2}]
+</span></code></pre>
+</section>
+
+
+
+<section>
+<script type="text/javascript">document.write($('#presentations-collection').html());</script>
+<pre><code class="js">// total attendees by topic by day
+db.presentations.aggregate(
+<span class="fragment">  { $project: {</span>
+<span class="fragment">      attendees: 1,</span>
+<span class="fragment">      topics:    1,</span>
+<span class="fragment">      year:      {$year:       '$date'},</span>
+<span class="fragment">      month:     {$month:      '$date'},</span>
+<span class="fragment">      day:       {$dayOfMonth: '$date'}
+  } },</span>
+<span class="fragment">  { $unwind: '$topics' },</span>
+<span class="fragment">  { $group: {</span>
+<span class="fragment">      _id: {year: 1, month: 1, day: 1, topics: 1},</span>
+<span class="fragment">      total: {$sum: '$attendees'}
+    }
+  }</span>
+).result
+<span class="fragment">
+[{_id: {year: 2012, month: 8, day: 15, topics: "mongodb"},
+  total: 55}]
+ {_id: {year: 2012, month: 8, day: 15, topics: "devops"},
+  total: 40},
+ {_id: {year: 2012, month: 8, day: 15, topics: "kitten mittens"},
+  total: 23},
+ {_id: {year: 2012, month: 8, day: 15, topics: "badassery"}
+  total: 32}]
+<span></code></pre>
+</section>
+
+
+
+        <section>
+          <h2>Resources</h2>
+          <ul style="font-size: .7em">
+            <li><a href="http://www.slideshare.net/TylerBrock/mongodb-aggregation-framework">Aggregation Framework Presentation Slides by Tyler Brock</a></li>
+            <li><a href="http://www.10gen.com/presentations/mongosf-2012/mongodb-new-aggregation-framework">MongoSF 2012: MongoDB's New Aggregation Framework</a></li>
+            <li><a href="http://docs.mongodb.org/manual/reference/aggregation/">Aggregation Framework Operators Reference</a></li>
+            <li><a href="http://docs.mongodb.org/manual/applications/aggregation/">Aggregation Framework Reference</a></li>
+            <li><a href="http://blog.mongodb.org/post/16015854270/operations-in-the-new-aggregation-framework">Operations in the New Aggregation Framework</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <p><a href="mailto:derek@double-pedal.com">Derek Harmel</a></p>
+          <p>Freelance Ruby on Rails Developer</p>
+          <p><a href="http://twitter.com/derekharmel">@derekharmel</a></p>
+        </section>
+
+
+        <!--
+        <section>
+          <h2></h2>
+          <p></p>
+          <p></p>
+
+          <ul>
+            <li></li>
+          </ul>
+          <aside class="notes">
+          </aside>
+        </section>
+        -->
+
+      </div>
+
+      <!-- The navigational controls UI -->
+      <aside class="controls">
+        <a class="left" href="#">&#x25C4;</a>
+        <a class="right" href="#">&#x25BA;</a>
+        <a class="up" href="#">&#x25B2;</a>
+        <a class="down" href="#">&#x25BC;</a>
+      </aside>
+
+      <!-- Presentation progress bar -->
+      <div class="progress"><span></span></div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+
+    <script>
+      // Load reveal.js as well as a classList polyfill if needed
+      head.js( !document.body.classList ? 'lib/js/classList.js' : null )
+        .js( 'js/reveal.js', function() {
+
+        // Parse the query string into a key/value object
+        var query = {};
+        location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+          query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+        } );
+
+        // Fires when a slide with data-state=customevent is activated
+        Reveal.addEventListener( 'customevent', function() {
+          console.log( '"customevent" has fired' );
+        } );
+
+        // Fires each time a new slide is activated
+        Reveal.addEventListener( 'slidechanged', function( event ) {
+          // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        } );
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          history: true,
+
+          theme: query.theme || 'default', // default/neon/beige
+          transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+        });
+
+      } );
+
+      // Load highlight.js for syntax highlighting of code samples
+      head.js( 'lib/js/highlight.js', function() {
+        hljs.initHighlightingOnLoad();
+      } );
+
+      // If we're runnning the notes server we need to include some additional JS
+      // TODO Is there a better way to determine if we're running the notes server?
+      if( window.location.host === 'localhost:1947' ) {
+        head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+      }
+    </script>
+
+  </body>
+</html>
