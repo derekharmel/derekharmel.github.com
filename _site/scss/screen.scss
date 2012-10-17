@@ -13,6 +13,7 @@ body {
   background-color: #f8f8f8;
   color: #666;
   word-spacing: 0.1em;
+  line-height: 1.4em;
 }
 
 a {
@@ -21,7 +22,7 @@ a {
 
 div.container {
   margin-left: 5%;
-  margin-bottom: 50px;
+  padding: 40px 0;
   width: 700px;
 }
 
@@ -42,7 +43,7 @@ div.container {
 
   li {
     text-align: right;
-    margin: 5px 5px;
+    margin: 0;
   }
   a {
     color: #78c;
@@ -55,7 +56,6 @@ div.container {
 
 #intro {
   margin-top: 15px;
-  line-height: 1.2em;
   text-align: justify;
 
   li {
@@ -75,25 +75,27 @@ h1, h4, h5 {
 h1 {
   font-size: 3em;
   text-indent: -2px;
-  margin-top: 6%;
 }
 h2 {
   color: #888;
   font-size: 1.3em;
+  line-height: 1.3em;
   font-weight: normal;
   margin-top: 10px;
   text-shadow: -1px 1px #fff;
 }
 h4 {
   font-size: 1.7em;
+  line-height: 1.7em;
   margin-bottom: 10px;
 }
 h5 {
   font-size: 1.3em;
+  line-height: 1.3em;
   color: #666;
   letter-spacing: 0;
   font-weight: normal;
-  margin: 5px 0px;
+  margin: 7px 0px;
 }
 
 ul {
@@ -128,10 +130,6 @@ td {
   }
 }
 
-.other-skills {
-  line-height: 1.3em;
-}
-
 .project {
   clear: both;
   float: left;
@@ -140,16 +138,16 @@ td {
     float: left;
     color: #888;
     margin-bottom: 5px;
-    font-style: italic;
+    font-weight: bold;
   }
   .tech-list {
     float: right;
     width: 28%;
     margin: 0;
     li {
-      float: right;
+      float: left;
       display: inline;
-      padding: 4px;
+      padding: 0 10px 10px 0;
       font-size: .9em;
       color: #aaa;
       text-shadow: -1px 1px #fff;
@@ -161,9 +159,7 @@ td {
     clear: both;
     float: left;
     width: 70%;
-    text-align: justify;
-    font-size: .9em;
-    line-height: 1.4em;
+    font-size: .95em;
   }
 }
 
@@ -185,8 +181,7 @@ td {
     clear: both;
     float: left;
     margin-top: 5px;
-    line-height: 1.3em;
-    text-align: justify;
+    /*text-align: justify;*/
     font-size: .9em;
   }
 }
