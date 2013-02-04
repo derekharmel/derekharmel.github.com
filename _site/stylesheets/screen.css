@@ -73,9 +73,13 @@ html {
 
 /* line 14, ../scss/screen.scss */
 body {
-  background-color: #f8f8f8;
   color: #666;
   word-spacing: 0.1em;
+  background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #999999), color-stop(50%, #ffffff), color-stop(100%, #999999));
+  background: -webkit-linear-gradient(left, #999999, #ffffff, #999999);
+  background: -moz-linear-gradient(left, #999999, #ffffff, #999999);
+  background: -o-linear-gradient(left, #999999, #ffffff, #999999);
+  background: linear-gradient(left, #999999, #ffffff, #999999);
 }
 
 /* line 20, ../scss/screen.scss */
@@ -85,18 +89,21 @@ a {
 
 /* line 24, ../scss/screen.scss */
 div.container {
-  margin-left: 5%;
+  margin: 40px auto;
   padding: 40px 0;
   width: 700px;
+  background-color: #f8f8f8;
+  padding: 40px;
+  box-shadow: 0px 0px 10px #333;
 }
 
-/* line 30, ../scss/screen.scss */
+/* line 33, ../scss/screen.scss */
 #me {
   display: inline;
   float: right;
   margin-left: 25px;
 }
-/* line 34, ../scss/screen.scss */
+/* line 37, ../scss/screen.scss */
 #me img {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -107,41 +114,41 @@ div.container {
   box-shadow: 2px 2px 5px #ccc;
 }
 
-/* line 41, ../scss/screen.scss */
+/* line 44, ../scss/screen.scss */
 #links {
   margin-top: 5px;
   font-size: .9em;
 }
-/* line 45, ../scss/screen.scss */
+/* line 48, ../scss/screen.scss */
 #links li {
   text-align: right;
   margin: 0;
 }
-/* line 49, ../scss/screen.scss */
+/* line 52, ../scss/screen.scss */
 #links a {
   color: #78c;
   text-decoration: none;
 }
-/* line 52, ../scss/screen.scss */
+/* line 55, ../scss/screen.scss */
 #links a:hover {
   text-decoration: underline;
 }
 
-/* line 58, ../scss/screen.scss */
+/* line 61, ../scss/screen.scss */
 #intro {
   margin-top: 15px;
   text-align: justify;
 }
-/* line 62, ../scss/screen.scss */
+/* line 65, ../scss/screen.scss */
 #intro li {
   margin: 3px 0;
 }
-/* line 64, ../scss/screen.scss */
+/* line 67, ../scss/screen.scss */
 #intro li:before {
   content: "\b7  ";
 }
 
-/* line 70, ../scss/screen.scss */
+/* line 73, ../scss/screen.scss */
 h1, h4, h5 {
   margin-top: 30px;
   color: #444;
@@ -149,7 +156,7 @@ h1, h4, h5 {
   font-family: Sanchez;
 }
 
-/* line 76, ../scss/screen.scss */
+/* line 79, ../scss/screen.scss */
 h1 {
   font-size: 3em;
   line-height: 48px;
@@ -157,7 +164,7 @@ h1 {
   margin-top: 0;
 }
 
-/* line 82, ../scss/screen.scss */
+/* line 85, ../scss/screen.scss */
 h2 {
   font-family: Sanchez;
   color: #444;
@@ -168,14 +175,14 @@ h2 {
   text-shadow: -1px 1px white;
 }
 
-/* line 91, ../scss/screen.scss */
+/* line 94, ../scss/screen.scss */
 h4 {
   font-size: 1.7em;
   line-height: 1.7em;
   margin-bottom: 10px;
 }
 
-/* line 96, ../scss/screen.scss */
+/* line 99, ../scss/screen.scss */
 h5 {
   font-size: 1.3em;
   line-height: 1.3em;
@@ -185,65 +192,65 @@ h5 {
   margin: 7px 0px;
 }
 
-/* line 105, ../scss/screen.scss */
+/* line 108, ../scss/screen.scss */
 ul {
   margin-top: 15px;
   padding: 0;
 }
-/* line 108, ../scss/screen.scss */
+/* line 111, ../scss/screen.scss */
 ul li {
   margin: 8px 0;
 }
 
-/* line 113, ../scss/screen.scss */
+/* line 116, ../scss/screen.scss */
 table {
   margin-left: 2px;
   width: 100%;
   font-size: .9em;
 }
 
-/* line 118, ../scss/screen.scss */
+/* line 121, ../scss/screen.scss */
 tr:nth-of-type(n+2) {
   border-top: 1px solid #ddd;
 }
 
-/* line 121, ../scss/screen.scss */
+/* line 124, ../scss/screen.scss */
 td {
   padding-top: 8px !important;
 }
-/* line 124, ../scss/screen.scss */
-td:nth-of-type(n+2) {
-  padding: 5px 30px;
-}
 /* line 127, ../scss/screen.scss */
+td:nth-of-type(n+2) {
+  padding: 5px 25px;
+}
+/* line 130, ../scss/screen.scss */
 td:nth-of-type(1) {
   padding: 5px 15px 5px 0;
 }
-/* line 130, ../scss/screen.scss */
+/* line 133, ../scss/screen.scss */
 td:nth-of-type(2) {
   text-align: right;
 }
 
-/* line 135, ../scss/screen.scss */
+/* line 138, ../scss/screen.scss */
 .project {
   clear: both;
   float: left;
   margin-bottom: 20px;
 }
-/* line 139, ../scss/screen.scss */
+/* line 142, ../scss/screen.scss */
 .project .name {
   float: left;
   color: #888;
   margin-bottom: 5px;
   font-weight: bold;
 }
-/* line 145, ../scss/screen.scss */
+/* line 148, ../scss/screen.scss */
 .project .tech-list {
   float: right;
   width: 28%;
   margin: 0;
 }
-/* line 149, ../scss/screen.scss */
+/* line 152, ../scss/screen.scss */
 .project .tech-list li {
   float: left;
   display: inline;
@@ -258,7 +265,7 @@ td:nth-of-type(2) {
   border-radius: 3px;
   margin: 0px;
 }
-/* line 160, ../scss/screen.scss */
+/* line 163, ../scss/screen.scss */
 .project .description {
   clear: both;
   float: left;
@@ -266,25 +273,25 @@ td:nth-of-type(2) {
   font-size: .95em;
 }
 
-/* line 169, ../scss/screen.scss */
+/* line 172, ../scss/screen.scss */
 .job {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 20px;
 }
-/* line 172, ../scss/screen.scss */
+/* line 175, ../scss/screen.scss */
 .job .title {
   float: left;
   color: #888;
   display: inline-block;
   font-style: italic;
 }
-/* line 178, ../scss/screen.scss */
+/* line 181, ../scss/screen.scss */
 .job .duration {
   float: right;
   color: #aaa;
 }
-/* line 182, ../scss/screen.scss */
+/* line 185, ../scss/screen.scss */
 .job .description {
   clear: both;
   float: left;
@@ -293,7 +300,7 @@ td:nth-of-type(2) {
   font-size: .9em;
 }
 
-/* line 191, ../scss/screen.scss */
+/* line 194, ../scss/screen.scss */
 ul.misc {
   margin-top: 5px;
 }
