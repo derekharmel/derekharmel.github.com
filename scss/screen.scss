@@ -6,14 +6,15 @@
 
 html {
   height: 100%;
+  font-family: Arimo;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 body {
-  font-family: Sorts Mill Goudy;
   background-color: #f8f8f8;
   color: #666;
   word-spacing: 0.1em;
-  line-height: 1.4em;
 }
 
 a {
@@ -59,7 +60,7 @@ div.container {
   text-align: justify;
 
   li {
-    margin: 0;
+    margin: 3px 0;
     &:before {
       content: "\b7  ";
     }
@@ -68,17 +69,20 @@ div.container {
 
 h1, h4, h5 {
   margin-top: 30px;
-  letter-spacing: -0.05em;
   color: #444;
   text-shadow: 1px 1px 2px #888;
+  font-family: Sanchez;
 }
 h1 {
   font-size: 3em;
+  line-height: 48px;
   text-indent: -2px;
+  margin-top: 0;
 }
 h2 {
-  color: #888;
-  font-size: 1.3em;
+  font-family: Sanchez;
+  color: #444;
+  font-size: 1.2em;
   line-height: 1.3em;
   font-weight: normal;
   margin-top: 10px;
@@ -109,6 +113,7 @@ ul {
 table {
   margin-left: 2px;
   width: 100%;
+  font-size: .9em;
 }
 tr:nth-of-type(n+2) {
   border-top: 1px solid #ddd;
@@ -124,9 +129,6 @@ td {
   }
   &:nth-of-type(2) {
     text-align: right;
-  }
-  &:nth-of-type(3) {
-    font-size: .85em;
   }
 }
 
