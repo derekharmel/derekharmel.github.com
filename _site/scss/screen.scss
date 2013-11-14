@@ -38,16 +38,23 @@ div.container {
     @include border-radius(5px);
     width: 125px;
     box-shadow: 2px 2px 5px #ccc;
+    margin-left: 10px;
   }
 }
 
 #links {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: .9em;
+  display: inline-block;
 
   li {
-    text-align: right;
     margin: 0;
+    display: inline;
+    &:nth-of-type(n+2) {
+      border-left: 1px solid #bbb;
+      margin-left: 5px;
+      padding-left: 10px;
+    }
   }
   a {
     color: #78c;
