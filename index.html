@@ -2,13 +2,21 @@
 layout: default
 title: Derek Harmel - Freelance Ruby on Rails and JavaScript Developer in Northern Virginia
 ---
+<script type="text/javascript">
+  $(function() {
+    $('a').click(function() {
+      window.location.hash = $(this).text().replace(' ', '_');
+      jumbe.pageview()
+    });
+  });
+</script>
 <div id="me">
-  <img src="/images/me_small.jpg"/>
+  <img src="/images/me_small.jpg" alt="Derek Harmel"/>
   <ul id="links">
-    <li><a href="mailto:derek@double-pedal.com">Email</a></li>
-    <li><a href="http://github.com/derekharmel">Github</a></li>
-    <li><a href="http://linkedin.com/in/derekharmel">LinkedIn</a></li>
-    <li><a href="http://stackoverflow.com/users/1256076/derek-harmel">Stackoverflow</a></li>
+    <li><a target="_blank" href="mailto:derek@double-pedal.com">Email</a></li>
+    <li><a target="_blank" href="http://github.com/derekharmel">Github</a></li>
+    <li><a target="_blank" href="http://linkedin.com/in/derekharmel">LinkedIn</a></li>
+    <li><a target="_blank" href="http://stackoverflow.com/users/1256076/derek-harmel">Stackoverflow</a></li>
   </ul>
 </div>
 

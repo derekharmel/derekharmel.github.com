@@ -9,6 +9,7 @@
     <link href="/stylesheets/screen.css" media="screen,print" type="text/css" rel="stylesheet" />
     <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
 
   <body>
@@ -33,7 +34,9 @@
     </script>
     <script type='text/javascript'>
       try {
-        jumbe.initialize("Q2x_VmrUxfSqCM9FfOfZDg");
+        jumbe.initialize("Q2x_VmrUxfSqCM9FfOfZDg", {
+          includeHash: true
+        });
         jumbe.pageview();
       } catch (err) {}
     </script>
