@@ -29,16 +29,37 @@
     </script>
 
     <script type='text/javascript'>
-      var protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-      document.write(unescape("%3Cscript src='" + protocol + "dxxivdcpl221v.cloudfront.net/jumbe.js'  type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type='text/javascript'>
-      try {
-        jumbe.initialize("Q2x_VmrUxfSqCM9FfOfZDg", {
-          includeHash: true
-        });
-        jumbe.pageview();
-      } catch (err) {}
+      var jumbe = jumbe || [];
+      jumbe.methods = ['initialize', 'pageview'];
+      jumbe.factory = function (method) {
+        return function() {
+          var args = Array.prototype.slice.call(arguments);
+          args.unshift(method);
+          jumbe.push(args);
+          return jumbe;
+        };
+      };
+
+      for (var i = 0; i < jumbe.methods.length; i++) {
+        var method = jumbe.methods[i];
+        jumbe[method] = jumbe.factory(method);
+      }
+
+      (function() {
+        var script   = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = ('https:' === document.location.protocol ? 'https://' : 'http://')
+                       + 'dxxivdcpl221v.cloudfront.net/jumbe.js';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+      })();
+
+      jumbe.initialize("Q2x_VmrUxfSqCM9FfOfZDg", {
+        includeHash: true
+      });
+      jumbe.pageview();
     </script>
   </body>
 </html>
